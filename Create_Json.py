@@ -2,21 +2,33 @@ import json
 import random
 from datetime import datetime, timedelta
 
-num_records = 100
+# Number of records to generate
+NUM_RECORDS = 100
+
+# Start time (current time - NUM_RECORDS minutes)
+start_time = datetime.now() - timedelta(minutes=NUM_RECORDS)
+
+# Output JSON file
+filename = "fitness_data.json"
 
 data = []
-start_date = datetime.now() - timedelta(days=num_records)
-for i in range(num_records):
-    date = (start_date + timedelta(days=i)).date().isoformat()
-    time = (datetime.min + timedelta(minutes=random.randint(0, 1439))).time().strftime('%H:%M:%S')
-    record = {
-        "Date": date,
-        "Time": time,
-        "SleepHours": round(random.uniform(4, 10), 1),
-        "HeartRate": random.randint(50, 100),
-        "Steps": random.randint(1000, 20000)
-    }
-    data.append(record)
 
-with open('fitness_data.json', 'w') as file:
+# Generate random fitness data
+for i in range(NUM_RECORDS):
+    timestamp = (start_time + timedelta(minutes=i)).strftime("%Y-%m-%d %H:%M:%S")
+    heart_rate = random.randint(55, 120)           # beats per minute
+    sleep_duration = random.uniform(0, 10)         # hours (per session)
+    step_count = random.randint(0, 200)            # steps per minute
+
+    data.append({
+        "timestamp": timestamp,
+        "heart_rate": heart_rate,
+        "sleep_duration": round(sleep_duration, 2),
+        "step_count": step_count
+    })
+
+# Save to JSON file
+with open(filename, "w") as file:
     json.dump(data, file, indent=4)
+
+print(f"✅ JSON file '{filename}' created with {NUM_RECORDS} records.")
