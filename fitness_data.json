@@ -1,0 +1,702 @@
+[
+    {
+        "Date": "2025-06-04",
+        "Time": "03:58:00",
+        "SleepHours": 4.0,
+        "HeartRate": 77,
+        "Steps": 15811
+    },
+    {
+        "Date": "2025-06-05",
+        "Time": "05:14:00",
+        "SleepHours": 9.8,
+        "HeartRate": 68,
+        "Steps": 11603
+    },
+    {
+        "Date": "2025-06-06",
+        "Time": "09:54:00",
+        "SleepHours": 4.8,
+        "HeartRate": 53,
+        "Steps": 16903
+    },
+    {
+        "Date": "2025-06-07",
+        "Time": "03:17:00",
+        "SleepHours": 10.0,
+        "HeartRate": 66,
+        "Steps": 16509
+    },
+    {
+        "Date": "2025-06-08",
+        "Time": "14:16:00",
+        "SleepHours": 8.8,
+        "HeartRate": 98,
+        "Steps": 3670
+    },
+    {
+        "Date": "2025-06-09",
+        "Time": "12:46:00",
+        "SleepHours": 6.5,
+        "HeartRate": 99,
+        "Steps": 12636
+    },
+    {
+        "Date": "2025-06-10",
+        "Time": "15:18:00",
+        "SleepHours": 5.8,
+        "HeartRate": 89,
+        "Steps": 5387
+    },
+    {
+        "Date": "2025-06-11",
+        "Time": "00:50:00",
+        "SleepHours": 9.4,
+        "HeartRate": 57,
+        "Steps": 14456
+    },
+    {
+        "Date": "2025-06-12",
+        "Time": "04:06:00",
+        "SleepHours": 5.7,
+        "HeartRate": 58,
+        "Steps": 19594
+    },
+    {
+        "Date": "2025-06-13",
+        "Time": "05:52:00",
+        "SleepHours": 9.9,
+        "HeartRate": 70,
+        "Steps": 10152
+    },
+    {
+        "Date": "2025-06-14",
+        "Time": "11:41:00",
+        "SleepHours": 8.3,
+        "HeartRate": 61,
+        "Steps": 7894
+    },
+    {
+        "Date": "2025-06-15",
+        "Time": "00:05:00",
+        "SleepHours": 6.5,
+        "HeartRate": 55,
+        "Steps": 12960
+    },
+    {
+        "Date": "2025-06-16",
+        "Time": "00:09:00",
+        "SleepHours": 6.6,
+        "HeartRate": 80,
+        "Steps": 10246
+    },
+    {
+        "Date": "2025-06-17",
+        "Time": "10:43:00",
+        "SleepHours": 7.6,
+        "HeartRate": 84,
+        "Steps": 17974
+    },
+    {
+        "Date": "2025-06-18",
+        "Time": "07:56:00",
+        "SleepHours": 5.4,
+        "HeartRate": 65,
+        "Steps": 14016
+    },
+    {
+        "Date": "2025-06-19",
+        "Time": "12:01:00",
+        "SleepHours": 6.9,
+        "HeartRate": 80,
+        "Steps": 15380
+    },
+    {
+        "Date": "2025-06-20",
+        "Time": "23:11:00",
+        "SleepHours": 7.3,
+        "HeartRate": 84,
+        "Steps": 16892
+    },
+    {
+        "Date": "2025-06-21",
+        "Time": "13:30:00",
+        "SleepHours": 8.4,
+        "HeartRate": 70,
+        "Steps": 6668
+    },
+    {
+        "Date": "2025-06-22",
+        "Time": "02:06:00",
+        "SleepHours": 6.3,
+        "HeartRate": 63,
+        "Steps": 7080
+    },
+    {
+        "Date": "2025-06-23",
+        "Time": "09:34:00",
+        "SleepHours": 7.0,
+        "HeartRate": 75,
+        "Steps": 18197
+    },
+    {
+        "Date": "2025-06-24",
+        "Time": "14:23:00",
+        "SleepHours": 6.4,
+        "HeartRate": 72,
+        "Steps": 9397
+    },
+    {
+        "Date": "2025-06-25",
+        "Time": "00:50:00",
+        "SleepHours": 9.6,
+        "HeartRate": 75,
+        "Steps": 9130
+    },
+    {
+        "Date": "2025-06-26",
+        "Time": "10:54:00",
+        "SleepHours": 7.3,
+        "HeartRate": 50,
+        "Steps": 9725
+    },
+    {
+        "Date": "2025-06-27",
+        "Time": "08:29:00",
+        "SleepHours": 4.3,
+        "HeartRate": 89,
+        "Steps": 3993
+    },
+    {
+        "Date": "2025-06-28",
+        "Time": "01:19:00",
+        "SleepHours": 9.7,
+        "HeartRate": 83,
+        "Steps": 9526
+    },
+    {
+        "Date": "2025-06-29",
+        "Time": "01:25:00",
+        "SleepHours": 7.1,
+        "HeartRate": 97,
+        "Steps": 6972
+    },
+    {
+        "Date": "2025-06-30",
+        "Time": "23:46:00",
+        "SleepHours": 7.4,
+        "HeartRate": 82,
+        "Steps": 8838
+    },
+    {
+        "Date": "2025-07-01",
+        "Time": "20:16:00",
+        "SleepHours": 6.0,
+        "HeartRate": 62,
+        "Steps": 17273
+    },
+    {
+        "Date": "2025-07-02",
+        "Time": "23:47:00",
+        "SleepHours": 10.0,
+        "HeartRate": 89,
+        "Steps": 4906
+    },
+    {
+        "Date": "2025-07-03",
+        "Time": "02:54:00",
+        "SleepHours": 4.1,
+        "HeartRate": 63,
+        "Steps": 7705
+    },
+    {
+        "Date": "2025-07-04",
+        "Time": "06:29:00",
+        "SleepHours": 6.8,
+        "HeartRate": 69,
+        "Steps": 14879
+    },
+    {
+        "Date": "2025-07-05",
+        "Time": "21:10:00",
+        "SleepHours": 6.8,
+        "HeartRate": 59,
+        "Steps": 11004
+    },
+    {
+        "Date": "2025-07-06",
+        "Time": "19:21:00",
+        "SleepHours": 7.4,
+        "HeartRate": 53,
+        "Steps": 7613
+    },
+    {
+        "Date": "2025-07-07",
+        "Time": "09:26:00",
+        "SleepHours": 5.5,
+        "HeartRate": 96,
+        "Steps": 1473
+    },
+    {
+        "Date": "2025-07-08",
+        "Time": "19:12:00",
+        "SleepHours": 8.5,
+        "HeartRate": 70,
+        "Steps": 19430
+    },
+    {
+        "Date": "2025-07-09",
+        "Time": "03:47:00",
+        "SleepHours": 4.5,
+        "HeartRate": 60,
+        "Steps": 12442
+    },
+    {
+        "Date": "2025-07-10",
+        "Time": "01:28:00",
+        "SleepHours": 6.4,
+        "HeartRate": 68,
+        "Steps": 6974
+    },
+    {
+        "Date": "2025-07-11",
+        "Time": "13:36:00",
+        "SleepHours": 5.7,
+        "HeartRate": 61,
+        "Steps": 12048
+    },
+    {
+        "Date": "2025-07-12",
+        "Time": "11:58:00",
+        "SleepHours": 7.3,
+        "HeartRate": 66,
+        "Steps": 7069
+    },
+    {
+        "Date": "2025-07-13",
+        "Time": "12:36:00",
+        "SleepHours": 7.4,
+        "HeartRate": 100,
+        "Steps": 2335
+    },
+    {
+        "Date": "2025-07-14",
+        "Time": "11:02:00",
+        "SleepHours": 5.1,
+        "HeartRate": 94,
+        "Steps": 1412
+    },
+    {
+        "Date": "2025-07-15",
+        "Time": "13:07:00",
+        "SleepHours": 9.5,
+        "HeartRate": 94,
+        "Steps": 3857
+    },
+    {
+        "Date": "2025-07-16",
+        "Time": "13:39:00",
+        "SleepHours": 8.2,
+        "HeartRate": 65,
+        "Steps": 8822
+    },
+    {
+        "Date": "2025-07-17",
+        "Time": "21:16:00",
+        "SleepHours": 6.3,
+        "HeartRate": 90,
+        "Steps": 16760
+    },
+    {
+        "Date": "2025-07-18",
+        "Time": "23:47:00",
+        "SleepHours": 4.4,
+        "HeartRate": 85,
+        "Steps": 13134
+    },
+    {
+        "Date": "2025-07-19",
+        "Time": "12:34:00",
+        "SleepHours": 4.3,
+        "HeartRate": 51,
+        "Steps": 3980
+    },
+    {
+        "Date": "2025-07-20",
+        "Time": "17:37:00",
+        "SleepHours": 4.7,
+        "HeartRate": 79,
+        "Steps": 11384
+    },
+    {
+        "Date": "2025-07-21",
+        "Time": "21:45:00",
+        "SleepHours": 5.6,
+        "HeartRate": 60,
+        "Steps": 11621
+    },
+    {
+        "Date": "2025-07-22",
+        "Time": "16:31:00",
+        "SleepHours": 6.0,
+        "HeartRate": 59,
+        "Steps": 18308
+    },
+    {
+        "Date": "2025-07-23",
+        "Time": "17:40:00",
+        "SleepHours": 8.1,
+        "HeartRate": 63,
+        "Steps": 10672
+    },
+    {
+        "Date": "2025-07-24",
+        "Time": "05:04:00",
+        "SleepHours": 8.9,
+        "HeartRate": 55,
+        "Steps": 4242
+    },
+    {
+        "Date": "2025-07-25",
+        "Time": "19:45:00",
+        "SleepHours": 8.6,
+        "HeartRate": 83,
+        "Steps": 1828
+    },
+    {
+        "Date": "2025-07-26",
+        "Time": "02:34:00",
+        "SleepHours": 7.3,
+        "HeartRate": 75,
+        "Steps": 17075
+    },
+    {
+        "Date": "2025-07-27",
+        "Time": "21:06:00",
+        "SleepHours": 6.6,
+        "HeartRate": 100,
+        "Steps": 8971
+    },
+    {
+        "Date": "2025-07-28",
+        "Time": "06:43:00",
+        "SleepHours": 9.9,
+        "HeartRate": 54,
+        "Steps": 8603
+    },
+    {
+        "Date": "2025-07-29",
+        "Time": "10:47:00",
+        "SleepHours": 5.7,
+        "HeartRate": 57,
+        "Steps": 6884
+    },
+    {
+        "Date": "2025-07-30",
+        "Time": "12:11:00",
+        "SleepHours": 7.2,
+        "HeartRate": 50,
+        "Steps": 18782
+    },
+    {
+        "Date": "2025-07-31",
+        "Time": "16:53:00",
+        "SleepHours": 9.9,
+        "HeartRate": 76,
+        "Steps": 9678
+    },
+    {
+        "Date": "2025-08-01",
+        "Time": "21:20:00",
+        "SleepHours": 8.4,
+        "HeartRate": 83,
+        "Steps": 11075
+    },
+    {
+        "Date": "2025-08-02",
+        "Time": "14:11:00",
+        "SleepHours": 4.9,
+        "HeartRate": 88,
+        "Steps": 18724
+    },
+    {
+        "Date": "2025-08-03",
+        "Time": "22:15:00",
+        "SleepHours": 5.9,
+        "HeartRate": 92,
+        "Steps": 13768
+    },
+    {
+        "Date": "2025-08-04",
+        "Time": "16:18:00",
+        "SleepHours": 9.0,
+        "HeartRate": 85,
+        "Steps": 18452
+    },
+    {
+        "Date": "2025-08-05",
+        "Time": "13:53:00",
+        "SleepHours": 4.1,
+        "HeartRate": 97,
+        "Steps": 6050
+    },
+    {
+        "Date": "2025-08-06",
+        "Time": "01:47:00",
+        "SleepHours": 9.4,
+        "HeartRate": 81,
+        "Steps": 8719
+    },
+    {
+        "Date": "2025-08-07",
+        "Time": "07:34:00",
+        "SleepHours": 9.6,
+        "HeartRate": 78,
+        "Steps": 13047
+    },
+    {
+        "Date": "2025-08-08",
+        "Time": "06:00:00",
+        "SleepHours": 9.6,
+        "HeartRate": 74,
+        "Steps": 17293
+    },
+    {
+        "Date": "2025-08-09",
+        "Time": "08:26:00",
+        "SleepHours": 4.9,
+        "HeartRate": 96,
+        "Steps": 6545
+    },
+    {
+        "Date": "2025-08-10",
+        "Time": "21:40:00",
+        "SleepHours": 7.8,
+        "HeartRate": 68,
+        "Steps": 18646
+    },
+    {
+        "Date": "2025-08-11",
+        "Time": "06:05:00",
+        "SleepHours": 5.9,
+        "HeartRate": 52,
+        "Steps": 18176
+    },
+    {
+        "Date": "2025-08-12",
+        "Time": "21:21:00",
+        "SleepHours": 6.1,
+        "HeartRate": 71,
+        "Steps": 13551
+    },
+    {
+        "Date": "2025-08-13",
+        "Time": "23:38:00",
+        "SleepHours": 6.4,
+        "HeartRate": 66,
+        "Steps": 10425
+    },
+    {
+        "Date": "2025-08-14",
+        "Time": "23:39:00",
+        "SleepHours": 4.6,
+        "HeartRate": 95,
+        "Steps": 10494
+    },
+    {
+        "Date": "2025-08-15",
+        "Time": "07:14:00",
+        "SleepHours": 6.1,
+        "HeartRate": 61,
+        "Steps": 9067
+    },
+    {
+        "Date": "2025-08-16",
+        "Time": "09:58:00",
+        "SleepHours": 8.3,
+        "HeartRate": 63,
+        "Steps": 8406
+    },
+    {
+        "Date": "2025-08-17",
+        "Time": "17:11:00",
+        "SleepHours": 6.5,
+        "HeartRate": 95,
+        "Steps": 7643
+    },
+    {
+        "Date": "2025-08-18",
+        "Time": "09:42:00",
+        "SleepHours": 6.9,
+        "HeartRate": 93,
+        "Steps": 2780
+    },
+    {
+        "Date": "2025-08-19",
+        "Time": "15:44:00",
+        "SleepHours": 6.9,
+        "HeartRate": 82,
+        "Steps": 4095
+    },
+    {
+        "Date": "2025-08-20",
+        "Time": "16:42:00",
+        "SleepHours": 8.8,
+        "HeartRate": 69,
+        "Steps": 4369
+    },
+    {
+        "Date": "2025-08-21",
+        "Time": "21:43:00",
+        "SleepHours": 4.7,
+        "HeartRate": 98,
+        "Steps": 6319
+    },
+    {
+        "Date": "2025-08-22",
+        "Time": "04:13:00",
+        "SleepHours": 6.3,
+        "HeartRate": 95,
+        "Steps": 9949
+    },
+    {
+        "Date": "2025-08-23",
+        "Time": "06:09:00",
+        "SleepHours": 4.6,
+        "HeartRate": 87,
+        "Steps": 13827
+    },
+    {
+        "Date": "2025-08-24",
+        "Time": "08:05:00",
+        "SleepHours": 9.3,
+        "HeartRate": 92,
+        "Steps": 16226
+    },
+    {
+        "Date": "2025-08-25",
+        "Time": "18:50:00",
+        "SleepHours": 5.6,
+        "HeartRate": 88,
+        "Steps": 7272
+    },
+    {
+        "Date": "2025-08-26",
+        "Time": "09:13:00",
+        "SleepHours": 9.3,
+        "HeartRate": 94,
+        "Steps": 4681
+    },
+    {
+        "Date": "2025-08-27",
+        "Time": "08:40:00",
+        "SleepHours": 8.5,
+        "HeartRate": 89,
+        "Steps": 13735
+    },
+    {
+        "Date": "2025-08-28",
+        "Time": "02:41:00",
+        "SleepHours": 8.0,
+        "HeartRate": 75,
+        "Steps": 9071
+    },
+    {
+        "Date": "2025-08-29",
+        "Time": "05:42:00",
+        "SleepHours": 7.4,
+        "HeartRate": 82,
+        "Steps": 6782
+    },
+    {
+        "Date": "2025-08-30",
+        "Time": "17:28:00",
+        "SleepHours": 8.6,
+        "HeartRate": 89,
+        "Steps": 10023
+    },
+    {
+        "Date": "2025-08-31",
+        "Time": "09:43:00",
+        "SleepHours": 7.2,
+        "HeartRate": 78,
+        "Steps": 10936
+    },
+    {
+        "Date": "2025-09-01",
+        "Time": "06:59:00",
+        "SleepHours": 6.6,
+        "HeartRate": 86,
+        "Steps": 2693
+    },
+    {
+        "Date": "2025-09-02",
+        "Time": "05:38:00",
+        "SleepHours": 7.9,
+        "HeartRate": 82,
+        "Steps": 18836
+    },
+    {
+        "Date": "2025-09-03",
+        "Time": "03:42:00",
+        "SleepHours": 9.4,
+        "HeartRate": 94,
+        "Steps": 6213
+    },
+    {
+        "Date": "2025-09-04",
+        "Time": "19:58:00",
+        "SleepHours": 9.4,
+        "HeartRate": 52,
+        "Steps": 8898
+    },
+    {
+        "Date": "2025-09-05",
+        "Time": "20:07:00",
+        "SleepHours": 4.1,
+        "HeartRate": 98,
+        "Steps": 12929
+    },
+    {
+        "Date": "2025-09-06",
+        "Time": "19:09:00",
+        "SleepHours": 4.9,
+        "HeartRate": 62,
+        "Steps": 17551
+    },
+    {
+        "Date": "2025-09-07",
+        "Time": "21:55:00",
+        "SleepHours": 9.0,
+        "HeartRate": 100,
+        "Steps": 3132
+    },
+    {
+        "Date": "2025-09-08",
+        "Time": "00:09:00",
+        "SleepHours": 6.9,
+        "HeartRate": 50,
+        "Steps": 6459
+    },
+    {
+        "Date": "2025-09-09",
+        "Time": "00:36:00",
+        "SleepHours": 4.3,
+        "HeartRate": 72,
+        "Steps": 19717
+    },
+    {
+        "Date": "2025-09-10",
+        "Time": "04:40:00",
+        "SleepHours": 5.2,
+        "HeartRate": 50,
+        "Steps": 9487
+    },
+    {
+        "Date": "2025-09-11",
+        "Time": "02:05:00",
+        "SleepHours": 5.0,
+        "HeartRate": 53,
+        "Steps": 11693
+    }
+]
