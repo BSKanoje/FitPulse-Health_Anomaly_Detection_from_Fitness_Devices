@@ -111,7 +111,3 @@ streamlit run app.py
 - **Doctors**: Monitor patients remotely with anomaly reports
 - **Researchers**: Study long-term patterns & detect unusual trends
 
----
-
-## 📝 License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
