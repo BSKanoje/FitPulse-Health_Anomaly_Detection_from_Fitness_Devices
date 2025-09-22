@@ -1,5 +1,5 @@
 import streamlit as st
-from modules.preprocessor import FitnessDataPreprocessor
+from pipeline.preprocessor import FitnessDataPreprocessor
 
 def main():
         st.set_page_config(page_title="FitPulse Preprocessor", page_icon="💓", layout="wide")

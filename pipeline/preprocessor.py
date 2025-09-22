@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 from typing import Dict
-from modules.uploader import FitnessDataUploader
-from modules.validator import FitnessDataValidator
-from modules.aligner import TimeAligner
+from pipeline.uploader import FitnessDataUploader
+from pipeline.validator import FitnessDataValidator
+from pipeline.aligner import TimeAligner
 
 class FitnessDataPreprocessor:
     def __init__(self):
