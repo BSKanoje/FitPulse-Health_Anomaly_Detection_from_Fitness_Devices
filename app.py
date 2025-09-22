@@ -3,7 +3,7 @@ from pipeline.preprocessor import FitnessDataPreprocessor
 
 def main():
         st.set_page_config(page_title="FitPulse Preprocessor", page_icon="💓", layout="wide")
-        st.title("💓 FitPulse - Data Collection & Preprocessing")
+        st.title("FitPulse - Data Collection & Preprocessing")
         st.markdown("**Milestone 1: Upload → Validate → Normalize → Preview**")
 
         if 'preprocessor' not in st.session_state:
