@@ -9,7 +9,7 @@ NUM_RECORDS = 100
 start_time = datetime.now() - timedelta(minutes=NUM_RECORDS)
 
 # Output JSON file
-filename = "fitness_data.json"
+filename = "fitness_data_json.json"
 
 data = []
 
@@ -31,4 +31,4 @@ for i in range(NUM_RECORDS):
 with open(filename, "w") as file:
     json.dump(data, file, indent=4)
 
-print(f"✅ JSON file '{filename}' created with {NUM_RECORDS} records.")
+print(f"JSON file '{filename}' created with {NUM_RECORDS} records.")
