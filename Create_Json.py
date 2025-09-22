@@ -9,7 +9,7 @@ NUM_RECORDS = 100
 start_time = datetime.now() - timedelta(minutes=NUM_RECORDS)
 
 # Output JSON file
-filename = "fitness_data_json.json"
+filename = "data/fitness_data_json.json"
 
 data = []
 

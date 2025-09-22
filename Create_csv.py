@@ -9,7 +9,7 @@ NUM_RECORDS = 100
 start_time = datetime.now() - timedelta(minutes=NUM_RECORDS)
 
 # Output CSV file
-filename = "fitness_data.csv"
+filename = "data/fitness_data.csv"
 
 # Generate random fitness data
 with open(filename, mode="w", newline="") as file:
