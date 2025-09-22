@@ -1,7 +1,7 @@
 import pandas as pd
 
 # File name of the JSON file generated earlier
-filename = "fitness_data.json"
+filename = "fitness_data_json.json"
 
 try:
     # Load JSON into a pandas DataFrame
