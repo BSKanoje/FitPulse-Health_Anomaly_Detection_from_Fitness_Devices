@@ -3,3 +3,6 @@ pandas
 numpy
 plotly
 pytz
+tsfresh
+prophet
+scikit-learn

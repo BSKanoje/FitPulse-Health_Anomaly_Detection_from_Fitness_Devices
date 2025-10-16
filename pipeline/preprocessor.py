@@ -99,7 +99,7 @@ class FitnessDataPreprocessor:
                 st.metric('🔗 Integration', '✅ Complete')
 
             st.subheader('Data Sample')
-            st.dataframe(df.head(50), use_container_width=True)
+            st.dataframe(df.head(50), width='stretch')
 
             # Visualization
             numeric_columns = df.select_dtypes(include=['number']).columns
@@ -130,7 +130,7 @@ class FitnessDataPreprocessor:
                     yaxis_title=selected,
                     height=480
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='stretch')
 
     def _generate_processing_summary(self):
         """Display a high-level summary of pipeline components and log."""

@@ -76,26 +76,34 @@ class FitnessDataValidator:
             df['timestamp'] = pd.to_datetime(df['timestamp']).dt.tz_localize('UTC', ambiguous='NaT', nonexistent='shift_forward')
         return df, issues
 
+    
     def _validate_numeric_columns(self, df: pd.DataFrame, data_type: str) -> Tuple[pd.DataFrame, List[str]]:
         issues = []
-        # ensure numeric where expected
-        for col in ['heart_rate','step_count','duration_minutes']:
+        for col in ['heart_rate', 'step_count', 'duration_minutes']:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')
                 if col in self.validation_rules:
-                    minv = self.validation_rules[col]['min_value'] if 'min_value' in self.validation_rules[col] else None
-                    maxv = self.validation_rules[col]['max_value'] if 'max_value' in self.validation_rules[col] else None
-                    if minv is not None:
-                        negs = (df[col] < minv).sum()
-                        if negs>0:
-                            issues.append(f'Found {negs} values < {minv} in {col}; clipped/naed')
-                            df.loc[df[col] < minv, col] = np.nan
-                    if maxv is not None:
-                        highs = (df[col] > maxv).sum()
-                        if highs>0:
-                            issues.append(f'Found {highs} values > {maxv} in {col}; clipped/naed')
-                            df.loc[df[col] > maxv, col] = np.nan
+                    minv = self.validation_rules[col].get('min_value', None)
+                    maxv = self.validation_rules[col].get('max_value', None)
+
+                    # Build anomaly mask instead of overwriting
+                    mask_low = (df[col] < minv) if minv is not None else False
+                    mask_high = (df[col] > maxv) if maxv is not None else False
+                    anomaly_mask = mask_low | mask_high
+
+                    if anomaly_mask.sum() > 0:
+                        issues.append(
+                            f"Found {anomaly_mask.sum()} anomalies in {col} (outside {minv}-{maxv})"
+                        )
+
+                    # Add/merge outlier flag column
+                    outlier_col = col + "_outlier"
+                    if outlier_col in df.columns:
+                        df[outlier_col] = df[outlier_col] | anomaly_mask
+                    else:
+                        df[outlier_col] = anomaly_mask
         return df, issues
+
 
     def _handle_missing_values(self, df: pd.DataFrame, data_type: str) -> Tuple[pd.DataFrame, int]:
         missing = int(df.isnull().sum().sum())
