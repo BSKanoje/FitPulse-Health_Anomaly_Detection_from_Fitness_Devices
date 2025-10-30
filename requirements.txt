@@ -6,3 +6,5 @@ pytz
 tsfresh
 prophet
 scikit-learn
+matplotlib
+seaborn
