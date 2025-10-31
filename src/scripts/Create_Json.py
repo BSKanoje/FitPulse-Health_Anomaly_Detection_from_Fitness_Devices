@@ -18,13 +18,13 @@ for i in range(NUM_RECORDS):
     timestamp = (start_time + timedelta(minutes=i)).strftime("%Y-%m-%d %H:%M:%S")
     heart_rate = random.randint(55, 120)           # beats per minute
     sleep_duration = random.uniform(0, 10)         # hours (per session)
-    step_count = random.randint(0, 200)            # steps per minute
+    steps = random.randint(0, 200)            # steps per minute
 
     data.append({
         "timestamp": timestamp,
         "heart_rate": heart_rate,
         "sleep_duration": round(sleep_duration, 2),
-        "step_count": step_count
+        "steps": steps
     })
 
 # Save to JSON file
