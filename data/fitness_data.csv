@@ -1,4 +1,4 @@
-timestamp,heart_rate,sleep_duration,step_count
+timestamp,heart_rate,sleep_duration,steps
 2025-09-22 15:14:44,1000,2.65,0
 2025-09-22 15:15:44,97,5.64,98
 2025-09-22 15:16:44,92,0.23,77
