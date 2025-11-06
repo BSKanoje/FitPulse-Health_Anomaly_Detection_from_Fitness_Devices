@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 import os
@@ -33,52 +33,84 @@ def load_data(file_path_or_df):
 
     return df.sort_index()
 
-
 def export_report(df, anomalies, alerts, filename='fitpulse_report', folder='report'):
-    """
-    Export CSV and PDF report inside a specified folder.
-    Marks anomalies and provides sample alerts.
-    """
-    # Create folder if it doesn't exist
+
+    # Create folder if missing
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    # Full path for files
-    csv_path = os.path.join(folder, f"{filename}.csv")
     pdf_path = os.path.join(folder, f"{filename}.pdf")
 
-    # Mark anomalies in full DF
-    full_df = df.copy()
-    full_df['is_anomaly'] = False
-    if not anomalies.empty:
-        for _, row in anomalies.iterrows():
-            if row['timestamp'] in full_df.index:
-                full_df.loc[row['timestamp'], 'is_anomaly'] = True
+    # ---- Convert anomalies to DataFrame ----
+    anomaly_df = pd.DataFrame(anomalies) if not anomalies.empty else pd.DataFrame()
 
-    # Export CSV
-    full_df.reset_index().to_csv(csv_path, index=False)
+    # ------------------------------------------------------
+    # ✅ FIX: Correct metric-wise alert detection
+    # ------------------------------------------------------
+    alert_samples = {
+        "heart_rate": "No alerts",
+        "steps": "No alerts",
+        "sleep_duration": "No alerts"
+    }
 
-    # Create PDF report
+    if isinstance(alerts, dict):
+        # Already structured as metric → list
+        for metric in alert_samples.keys():
+            if metric in alerts and isinstance(alerts[metric], list) and alerts[metric]:
+                alert_samples[metric] = alerts[metric][0]
+
+    elif isinstance(alerts, list):
+        # Detect metric name from alert text
+        for alert in alerts:
+            if not isinstance(alert, str):
+                continue
+
+            text = alert.lower()
+
+            if "heart_rate" in text or "heart rate" in text:
+                alert_samples["heart_rate"] = alert
+
+            elif "steps" in text:
+                alert_samples["steps"] = alert
+
+            elif "sleep_duration" in text or "sleep duration" in text or "sleep" in text:
+                alert_samples["sleep_duration"] = alert
+
+    # ------------------------------------------------------
+    # ✅ PDF Setup
+    # ------------------------------------------------------
     doc = SimpleDocTemplate(pdf_path, pagesize=letter)
     styles = getSampleStyleSheet()
     story = []
 
+    # Header
     story.append(Paragraph("FitPulse Health Report", styles['Title']))
     story.append(Spacer(1, 12))
     story.append(Paragraph(f"Data Period: {df.index.min()} to {df.index.max()}", styles['Normal']))
     story.append(Spacer(1, 12))
 
-    # Summary table
-    anomaly_df = pd.DataFrame(anomalies) if not anomalies.empty else pd.DataFrame()
-    alert_samples = {k: v[0] if v else 'No alerts' for k, v in alerts.items()}
+    # ------------------------------------------------------
+    # ✅ Summary Table
+    # ------------------------------------------------------
     data = [
         ['Metric', 'Anomalies Found', 'Sample Alert'],
-        ['Heart Rate', len(anomaly_df[anomaly_df['metric'] == 'heart_rate']) if not anomaly_df.empty else 0, alert_samples.get('heart_rate', 'No alerts')],
-        ['Steps', len(anomaly_df[anomaly_df['metric'] == 'steps']) if not anomaly_df.empty else 0, alert_samples.get('steps', 'No alerts')],
-        ['Sleep Duration', len(anomaly_df[anomaly_df['metric'] == 'sleep_duration']) if not anomaly_df.empty else 0, alert_samples.get('sleep_duration', 'No alerts')]
+        [
+            'Heart Rate',
+            len(anomaly_df[anomaly_df['metric'] == 'heart_rate']) if not anomaly_df.empty else 0,
+            alert_samples["heart_rate"]
+        ],
+        [
+            'Steps',
+            len(anomaly_df[anomaly_df['metric'] == 'steps']) if not anomaly_df.empty else 0,
+            alert_samples["steps"]
+        ],
+        [
+            'Sleep Duration',
+            len(anomaly_df[anomaly_df['metric'] == 'sleep_duration']) if not anomaly_df.empty else 0,
+            alert_samples["sleep_duration"]
+        ]
     ]
 
-    from reportlab.platypus import TableStyle
     table = Table(data)
     table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
@@ -90,21 +122,32 @@ def export_report(df, anomalies, alerts, filename='fitpulse_report', folder='rep
         ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
+
     story.append(table)
 
-    # Detailed anomalies (top 10)
-    if not anomalies.empty:
+    # ------------------------------------------------------
+    # ✅ Detailed Anomalies (Top 10)
+    # ------------------------------------------------------
+    if not anomaly_df.empty:
         story.append(Spacer(1, 12))
-        story.append(Paragraph("Detected Anomalies:", styles['Heading2']))
-        for _, row in anomaly_df.head(10).iterrows():
-            story.append(Paragraph(f"{row['timestamp']}: {row['metric']} = {row['value']} ({row['type']})", styles['Normal']))
+        story.append(Paragraph("Detected Anomalies (Top 10):", styles['Heading2']))
 
-    # Build PDF
+        for _, row in anomaly_df.head(10).iterrows():
+            anomaly_type = row['type'] if 'type' in row else "Unknown"
+
+            story.append(Paragraph(
+                f"{row['timestamp']}: {row['metric']} = {row['value']} ",
+                styles['Normal']
+            ))
+
+    # ------------------------------------------------------
+    # ✅ Build PDF
+    # ------------------------------------------------------
     doc.build(story)
 
-    # Feedback for Streamlit
+    # Feedback
     if 'st' in globals():
         import streamlit as st
-        st.success(f"Reports exported: {csv_path} and {pdf_path}")
+        st.success(f"✅ PDF report exported: {pdf_path}")
     else:
-        print(f"Reports exported: {csv_path} and {pdf_path}")
+        print(f"✅ PDF report exported: {pdf_path}")

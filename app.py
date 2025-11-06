@@ -73,6 +73,20 @@ st.markdown(
     div[data-baseweb="tab-highlight"] {
         background-color: black !important;
     }
+
+    /* Style ONLY the Download PDF Report button */
+    div.stDownloadButton > button {
+        background-color: #28a745 !important;  
+        color: white !important;              
+        font-weight: bold !important;
+        border-radius: 8px !important;
+        padding: 8px 15px !important;
+        border: 1px solid #1e7e34 !important;
+    }
+    div.stDownloadButton > button:hover {
+        background-color: #218838 !important;   
+        color: white !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -267,9 +281,55 @@ if df is not None and len(df) > 0:
         else:
             success_box("All metrics normal — no anomalies detected!")
 
+    # ----------------------------
+    # 📄 Export & Download Report Section
+    # ----------------------------
+    st.subheader("Export FitPulse Report")
+
+    if st.button("Generate Report"):
+        try:
+            # Generate both CSV and PDF inside the /report folder
+            export_report(df, anomalies, alerts, filename="fitpulse_report", folder="report")
+
+            pdf_path = "report/fitpulse_report.pdf"
+
+            # Read PDF
+            with open(pdf_path, "rb") as pdf_file:
+                pdf_bytes = pdf_file.read()
+
+            st.markdown(
+                """
+                <div style="
+                    background-color:#d4edda;      /* light green success box */
+                    color:black;                    /* ✅ black text */
+                    padding:12px 20px;
+                    border-radius:8px;
+                    border:1px solid #c3e6cb;       /* green border */
+                    font-weight:bold;
+                    margin-bottom:10px;
+                ">
+                    ✅ Report generated successfully!
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            # Show download button
+            st.download_button(
+                label="⬇ Download PDF Report",
+                data=pdf_bytes,
+                file_name="FitPulse_Health_Report.pdf",
+                mime="application/pdf"
+            )
+
+        except Exception as e:
+            st.error(f"❌ Failed to generate report: {e}")
+
+
     # =======================================
     # 📊 ADVANCED ANOMALY VISUALIZATION DASHBOARD
     # =======================================
+
 
     st.subheader("🔍 FitPulse Anomaly Insights Dashboard")
 
