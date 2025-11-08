@@ -26,4 +26,7 @@ def preprocess_data(df):
             df[col] = df[col].fillna(method='ffill')
 
     df = df.set_index('timestamp')
+
+    df = df.reset_index()
+
     return df

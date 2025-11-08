@@ -25,7 +25,7 @@ class AnomalyDetector:
         """
         rules = {
             'heart_rate': (50, 110),
-            'steps': (0, 2000),
+            'steps': (5, 120),
             'sleep_duration': (60, 600)
         }
 

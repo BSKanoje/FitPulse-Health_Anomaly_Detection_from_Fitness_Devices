@@ -2,9 +2,10 @@ import pandas as pd
 import json
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 import os
+
 
 def load_data(file_path_or_df):
     """
@@ -41,113 +42,144 @@ def export_report(df, anomalies, alerts, filename='fitpulse_report', folder='rep
 
     pdf_path = os.path.join(folder, f"{filename}.pdf")
 
-    # ---- Convert anomalies to DataFrame ----
+    # Convert anomalies to DataFrame
     anomaly_df = pd.DataFrame(anomalies) if not anomalies.empty else pd.DataFrame()
 
     # ------------------------------------------------------
-    # ✅ FIX: Correct metric-wise alert detection
+    # ✅ Fix alert samples
     # ------------------------------------------------------
-    alert_samples = {
-        "heart_rate": "No alerts",
-        "steps": "No alerts",
-        "sleep_duration": "No alerts"
-    }
+    alert_samples = {m: "No alerts" for m in ["heart_rate", "steps", "sleep_duration"]}
 
     if isinstance(alerts, dict):
-        # Already structured as metric → list
-        for metric in alert_samples.keys():
-            if metric in alerts and isinstance(alerts[metric], list) and alerts[metric]:
+        for metric in alert_samples:
+            if metric in alerts and alerts[metric]:
                 alert_samples[metric] = alerts[metric][0]
 
     elif isinstance(alerts, list):
-        # Detect metric name from alert text
         for alert in alerts:
-            if not isinstance(alert, str):
-                continue
-
-            text = alert.lower()
-
-            if "heart_rate" in text or "heart rate" in text:
+            t = alert.lower()
+            if "heart" in t:
                 alert_samples["heart_rate"] = alert
-
-            elif "steps" in text:
+            elif "steps" in t:
                 alert_samples["steps"] = alert
-
-            elif "sleep_duration" in text or "sleep duration" in text or "sleep" in text:
+            elif "sleep" in t:
                 alert_samples["sleep_duration"] = alert
 
     # ------------------------------------------------------
-    # ✅ PDF Setup
+    # ✅ PDF Setup with FitPulse Purple Theme
     # ------------------------------------------------------
+    PURPLE = colors.HexColor("#4B0082")
+    LAVENDER = colors.HexColor("#E6E6FA")
+    LIGHT_PURPLE = colors.HexColor("#D8BFD8")
+
     doc = SimpleDocTemplate(pdf_path, pagesize=letter)
     styles = getSampleStyleSheet()
+
+    # Custom Title Style
+    styles.add(ParagraphStyle(
+        name="PurpleTitle",
+        fontSize=22,
+        leading=26,
+        alignment=1,
+        textColor=PURPLE,
+        spaceAfter=14,
+        spaceBefore=10
+    ))
+
+    # Section heading
+    styles.add(ParagraphStyle(
+        name="SectionHeader",
+        fontSize=16,
+        leading=20,
+        textColor=PURPLE,
+        spaceAfter=10,
+        spaceBefore=20
+    ))
+
+    # Normal text
+    styles.add(ParagraphStyle(
+        name="NormalText",
+        fontSize=12,
+        textColor=colors.black,
+        leading=16
+    ))
+
     story = []
 
-    # Header
-    story.append(Paragraph("FitPulse Health Report", styles['Title']))
+    # ------------------------------------------------------
+    # ✅ Header
+    # ------------------------------------------------------
+    story.append(Paragraph("FitPulse Health Anomaly Report", styles['PurpleTitle']))
+    story.append(Paragraph(
+        f"Data Period: <b>{df.index.min()}</b> to <b>{df.index.max()}</b>",
+        styles['NormalText']
+    ))
     story.append(Spacer(1, 12))
-    story.append(Paragraph(f"Data Period: {df.index.min()} to {df.index.max()}", styles['Normal']))
-    story.append(Spacer(1, 12))
+
+    # Divider line
+    story.append(Paragraph("<br/><hr width='100%' color='#4B0082'/>", styles['NormalText']))
 
     # ------------------------------------------------------
     # ✅ Summary Table
     # ------------------------------------------------------
+    story.append(Paragraph("📊 Summary of Anomalies", styles['SectionHeader']))
+
     data = [
         ['Metric', 'Anomalies Found', 'Sample Alert'],
-        [
-            'Heart Rate',
+        ['Heart Rate',
             len(anomaly_df[anomaly_df['metric'] == 'heart_rate']) if not anomaly_df.empty else 0,
-            alert_samples["heart_rate"]
+            alert_samples['heart_rate']
         ],
-        [
-            'Steps',
+        ['Steps',
             len(anomaly_df[anomaly_df['metric'] == 'steps']) if not anomaly_df.empty else 0,
-            alert_samples["steps"]
+            alert_samples['steps']
         ],
-        [
-            'Sleep Duration',
+        ['Sleep Duration',
             len(anomaly_df[anomaly_df['metric'] == 'sleep_duration']) if not anomaly_df.empty else 0,
-            alert_samples["sleep_duration"]
+            alert_samples['sleep_duration']
         ]
     ]
 
-    table = Table(data)
+    table = Table(data, colWidths=[120, 120, 260])
     table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('BACKGROUND', (0, 0), (-1, 0), PURPLE),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
         ('FONTSIZE', (0, 0), (-1, 0), 14),
-        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 10),
+
+        # Alternating row colors
+        ('BACKGROUND', (0, 1), (-1, 1), LAVENDER),
+        ('BACKGROUND', (0, 2), (-1, 2), LIGHT_PURPLE),
+        ('BACKGROUND', (0, 3), (-1, 3), LAVENDER),
+
+        ('GRID', (0, 0), (-1, -1), 1, PURPLE)
     ]))
 
     story.append(table)
 
     # ------------------------------------------------------
-    # ✅ Detailed Anomalies (Top 10)
+    # ✅ Detailed Anomalies (ALL, Not Top 10)
     # ------------------------------------------------------
-    if not anomaly_df.empty:
-        story.append(Spacer(1, 12))
-        story.append(Paragraph("Detected Anomalies (Top 10):", styles['Heading2']))
+    story.append(Paragraph("📌 Detailed List of All Anomalies", styles['SectionHeader']))
 
-        for _, row in anomaly_df.head(10).iterrows():
-            anomaly_type = row['type'] if 'type' in row else "Unknown"
-
+    if anomaly_df.empty:
+        story.append(Paragraph("✅ No anomalies detected.", styles['NormalText']))
+    else:
+        for _, row in anomaly_df.iterrows():
             story.append(Paragraph(
-                f"{row['timestamp']}: {row['metric']} = {row['value']} ",
-                styles['Normal']
+                f"<b>{row['timestamp']}</b> — <b>{row['metric']}</b>: {row['value']}",
+                styles['NormalText']
             ))
+            story.append(Spacer(1, 4))
 
-    # ------------------------------------------------------
-    # ✅ Build PDF
-    # ------------------------------------------------------
+    # Build PDF
     doc.build(story)
 
-    # Feedback
+    # Success feedback
     if 'st' in globals():
         import streamlit as st
-        st.success(f"✅ PDF report exported: {pdf_path}")
+        st.success(f"✅ PDF report exported successfully: {pdf_path}")
     else:
-        print(f"✅ PDF report exported: {pdf_path}")
+        print(f"✅ PDF report exported successfully: {pdf_path}")

@@ -284,7 +284,7 @@ if df is not None and len(df) > 0:
     # ----------------------------
     # 📄 Export & Download Report Section
     # ----------------------------
-    st.subheader("Export FitPulse Report")
+    st.subheader("📥Export FitPulse Report")
 
     if st.button("Generate Report"):
         try:
@@ -450,24 +450,26 @@ if df is not None and len(df) > 0:
         st.markdown("### 📊 Rule-Based Anomalies (Fixed Thresholds)")
         
 
-        # Apply simple rule-based logic (independent of timestamp)
-        rule_anoms = pd.DataFrame(columns=['metric', 'value'])
+        rule_anoms = pd.DataFrame(columns=['timestamp','metric','value'])
+
         if 'heart_rate' in df.columns:
             hr_anoms = df[(df['heart_rate'] > 110) | (df['heart_rate'] < 50)]
             if not hr_anoms.empty:
-                temp = hr_anoms[['heart_rate']].rename(columns={'heart_rate': 'value'})
+                temp = hr_anoms[['timestamp','heart_rate']].rename(columns={'heart_rate':'value'})
                 temp['metric'] = 'heart_rate'
                 rule_anoms = pd.concat([rule_anoms, temp])
+
         if 'steps' in df.columns:
-            st_anoms = df[(df['steps'] > 2000) | (df['steps'] < 0)]
+            st_anoms = df[(df['steps'] < 5) | (df['steps'] > 120)]
             if not st_anoms.empty:
-                temp = st_anoms[['steps']].rename(columns={'steps': 'value'})
+                temp = st_anoms[['timestamp','steps']].rename(columns={'steps':'value'})
                 temp['metric'] = 'steps'
                 rule_anoms = pd.concat([rule_anoms, temp])
+
         if 'sleep_duration' in df.columns:
             sl_anoms = df[(df['sleep_duration'] < 60) | (df['sleep_duration'] > 600)]
             if not sl_anoms.empty:
-                temp = sl_anoms[['sleep_duration']].rename(columns={'sleep_duration': 'value'})
+                temp = sl_anoms[['timestamp','sleep_duration']].rename(columns={'sleep_duration':'value'})
                 temp['metric'] = 'sleep_duration'
                 rule_anoms = pd.concat([rule_anoms, temp])
 
@@ -493,7 +495,7 @@ if df is not None and len(df) > 0:
 
             fig_rule = px.scatter(
                 rule_anoms,
-                x='metric', y='value',
+                x='timestamp', y='value',
                 color='metric',
                 title="Detected Rule-Based Anomalies by Metric",
                 color_discrete_sequence=['#FF4500', '#32CD32', '#1E90FF'],
@@ -589,5 +591,9 @@ if df is not None and len(df) > 0:
 
             # Add Prophet-based trend visualization
             st.markdown("#### Health Trends Over Time")
+            # ✅ Use timestamp as the index for consistent time-series plotting
+            if 'timestamp' in df.columns:
+                df = df.set_index('timestamp')
+
             fig_trends = plot_trends(df, models)
             st.plotly_chart(fig_trends, use_container_width=True)
